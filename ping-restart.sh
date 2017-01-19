@@ -5,7 +5,7 @@ code=$?
 
 if [ "${code:0}" != "0" ]; then
 	echo "$(date +"%d %b %r") | $(uptime -p) | Exit ${code}. Restarting..." >> "$(pwd)/ping-restart.log"
-	reboot
+	shutdown -r now
 #else
 #      	echo "$(date) EXIT CODE $code, OK" >> "$(pwd)/ping-restart.log"
 fi
