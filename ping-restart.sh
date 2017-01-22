@@ -6,7 +6,7 @@ code=$?
 script_dir=$(dirname $0)
 
 if [ "${code:0}" != "0" ]; then
-	echo "$(date +"%d %b %r") | $(uptime -p) | Exit ${code}. Restarting..." >> "$(script_dir)/ping-restart.log"
+	echo "$(date +"%d %b %r") | $(uptime -p) | Exit ${code}. Restarting..." >> "${script_dir}/ping-restart.log"
 	shutdown -r now
 #else
 #      	echo "$(date) EXIT CODE $code, OK" >> "$(pwd)/ping-restart.log"
