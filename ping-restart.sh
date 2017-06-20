@@ -1,13 +1,11 @@
 #!/bin/bash
 
-ping google.com -c 1  # ping--no packets exit 1; good exit 0
-code=$?
+ping google.com -c 1 > /dev/null 2>&1; exit_code=$?
+time_stamp=$(date +"%Y%m%d-%H%M")
 
-script_dir=$(dirname $0)
-
-if [ "${code:0}" != "0" ]; then
-	echo "$(date +"%d %b %r") | $(uptime -p) | Exit ${code}. Restarting..." >> "${script_dir}/ping-restart.log"
-	shutdown -r now
-#else
-#      	echo "$(date) EXIT CODE $code, OK" >> "$(pwd)/ping-restart.log"
+if [ $exit_code -ne 0 ]; then 
+    (1>&2 echo "$time_stamp: failed with exit code $exit_code; restarting now")
+    reboot
+else
+    echo "$time_stamp: ok"
 fi
