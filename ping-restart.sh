@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ping google.com -c 1 > /dev/null 2>&1; exit_code=$?
+ping 8.8.8.8 -c 1 > /dev/null 2>&1; exit_code=$?
 time_stamp=$(date +"%Y%m%d-%H%M")
 
 if [ $exit_code -ne 0 ]; then 
